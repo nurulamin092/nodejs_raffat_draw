@@ -74,7 +74,28 @@ class TicketCollection {
         ticket.username = ticketBody.username ?? ticket.username;
         ticket.price = ticketBody.price ?? ticket.price;
 
-        return ticket
+        return ticket;
+    }
+
+    /**
+     * delete ticket by id
+     * @param {string} ticketId 
+     * @return (boolean) 
+     */
+    deleteById(ticketId) {
+        const index = this[tickets].findIndex(
+            /**
+             * @param {Ticket} ticket
+             */
+            (ticket) => ticketId.id == ticketId
+        )
+        if (index == -1) {
+            return false;
+        }
+        else {
+            this[tickets].splice(index, 1);
+            return true;
+        }
     }
 }
 
