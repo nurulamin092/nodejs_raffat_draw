@@ -24,6 +24,22 @@ class TicketCollection {
     }
 
     /**
+     * create bulk tickets
+     * @param {string} username 
+     * @param {number} price 
+     * @param {number} quantity 
+     * @return {Ticket[]}
+     */
+    createBulk(username, price, quantity) {
+        const result = []
+        for (let i = 0; i < quantity; i++) {
+            const ticket = this.create(username, price);
+            result.push(ticket)
+        }
+        return result;
+    }
+
+    /**
      * return all tickets from db
      */
 
