@@ -94,6 +94,23 @@ class TicketCollection {
     }
 
     /**
+     * bulk update by user name
+     * @param {string} username 
+     * @param {{username:string, price:number}} ticketBody 
+     * @return {Ticket[]}
+     */
+    updateBulk(username, ticketBody) {
+        const userTickets = this.findByUsername(username)
+        const updatedTickets = userTickets.map(
+            /**
+             * @param {Ticket} ticket
+             */
+            (ticket) => this.updateById(ticket.id, ticketBody)
+        );
+        return updatedTickets;
+    }
+
+    /**
      * delete ticket by id
      * @param {string} ticketId 
      * @return (boolean) 
@@ -112,6 +129,22 @@ class TicketCollection {
             this[tickets].splice(index, 1);
             return true;
         }
+    }
+
+    /**
+     * bulk delete by user name
+     * @param {*} username 
+     * @return {boolean[]}
+     */
+    deleteBulk(username) {
+        const userTickets = this.findByUsername(username);
+        const deletedResult = userTickets.map(
+            /**
+             * @param {Ticket} ticket
+             */
+            (ticket) => this.deleteById(ticket.id)
+        );
+        return deletedResult;
     }
 }
 
