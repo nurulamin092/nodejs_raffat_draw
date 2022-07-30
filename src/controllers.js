@@ -63,7 +63,7 @@ exports.updateByUsername = (req, res) => {
 
 // delete controller
 
-exports.updateById = (req, res) => {
+exports.deleteById = (req, res) => {
     const id = req.params.id;
     const isDeleted = ticketCollection.deleteById(id);
     if (isDeleted) {
@@ -76,4 +76,12 @@ exports.deleteByUsername = (req, res) => {
     const username = req.params.username;
     ticketCollection.deleteBulk(username);
     res.status(204).send();
+}
+
+//draw controller
+
+exports.drawWinners = (req, res) => {
+    const wc = req.query.wc ?? 3;
+    const winners = ticketCollection.draw(wc);
+    res.status(200).json(winners)
 }
