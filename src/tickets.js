@@ -5,7 +5,7 @@ const tickets = Symbol('tickets')
 
 class TicketCollection {
     constructor() {
-        this.tickets = [];
+        this[tickets] = [];
     }
 
 
@@ -172,6 +172,6 @@ class TicketCollection {
     }
 }
 
-const collection = new TicketCollection();
+const ticketCollection = new TicketCollection();
+module.exports = ticketCollection;
 
-module.exports = collection;
