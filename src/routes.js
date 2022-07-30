@@ -4,12 +4,14 @@ const {
     sellSingleTicket,
     findAll,
     findById,
-    findByUsername
+    findByUsername,
+    updateById,
+
 } = require('./controllers')
 
-router.route('/t/:id').get(findById).put().delete()
+router.route('/t/:id').get(findById).put(updateById).delete()
 
-router.route('/u/:username').get(findByUsername).put().delete()
+router.route('/u/:username').get(findByUsername).put(updateByUsername).delete()
 
 router.post('/bulk', sellBulkTicket);
 router.get('/draw');
