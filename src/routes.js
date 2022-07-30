@@ -6,6 +6,7 @@ const {
     findById,
     findByUsername,
     updateById,
+    updateByUsername,
     deleteById,
     deleteByUsername,
     drawWinners
