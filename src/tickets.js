@@ -34,9 +34,10 @@ class TicketCollection {
      * @return {Ticket[]}
      */
     createBulk(username, price, quantity) {
-        const result = []
+
+        const result = [];
         for (let i = 0; i < quantity; i++) {
-            const ticket = this.create(username, price);
+            const ticket = this.create(username, price)
             result.push(ticket)
         }
         writeFile(this[tickets]);
@@ -73,13 +74,13 @@ class TicketCollection {
      * @return {Ticket[]}
      */
     findByUsername(username) {
-        const tickets = this[tickets].filter(
+        const userTickets = this[tickets].filter(
             /**
              * @param {Ticket} ticket
              */
             (ticket) => ticket.username == username
         );
-        return tickets
+        return userTickets;
     }
 
     /**
@@ -127,7 +128,7 @@ class TicketCollection {
             /**
              * @param {Ticket} ticket
              */
-            (ticket) => ticketId.id == ticketId
+            (ticket) => ticket.id == ticketId
         )
         if (index == -1) {
             return false;
@@ -161,24 +162,29 @@ class TicketCollection {
      * @param {number} winnerCounter 
      * @return {Ticket[]}
      */
-    draw(winnerCounter) {
-        const winnerIndexes = new Array(winnerCounter);
+
+
+    draw(winnerCount) {
+        const winnerIndexes = new Array(winnerCount)
         let winnerIndex = 0;
-        while (winnerIndex < winnerCounter) {
-            let ticketIndex = Math.floor(Math.random() * this[this].length);
+        while (winnerIndex < winnerCount) {
+            let ticketIndex = Math.floor(Math.random() * this[tickets].length)
             if (!winnerIndexes.includes(ticketIndex)) {
                 winnerIndexes[winnerIndex++] = ticketIndex;
                 continue;
             }
         }
+
         const winners = winnerIndexes.map(
             /**
              * @param {number} index
              */
-            (index) = this[tickets][index]
+            (index) => this[tickets][index]
         );
+
         return winners;
     }
+
 }
 
 const ticketCollection = new TicketCollection();

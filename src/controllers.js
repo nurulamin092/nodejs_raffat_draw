@@ -40,7 +40,7 @@ exports.findById = (req, res) => {
 exports.findByUsername = (req, res) => {
     const username = req.params.username;
     const ticket = ticketCollection.findByUsername(username);
-    res.status(200).json({ items: tickets, total: tickets.length });
+    res.status(200).json({ items: ticket, total: ticket.length });
 };
 
 //update controller
@@ -84,5 +84,5 @@ exports.deleteByUsername = (req, res) => {
 exports.drawWinners = (req, res) => {
     const wc = req.query.wc ?? 3;
     const winners = ticketCollection.draw(wc);
-    res.status(200).json(winners)
+    res.status(200).json(winners);
 }
