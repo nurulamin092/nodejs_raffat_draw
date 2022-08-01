@@ -8,6 +8,6 @@ exports.readFile = async () => {
     return JSON.parse(data);
 };
 
-exports.writeFile = async () => {
+exports.writeFile = async (data) => {
     await fs.writeFile(dbPath, JSON.stringify(data));
 };

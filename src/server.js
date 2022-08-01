@@ -20,6 +20,7 @@ app.use((_req, _res, next) => {
 });
 
 app.use((error, _res, next) => {
+    console.log(error);
     if (error.status) {
         return res.status(error.status).json({
             message: error.message,

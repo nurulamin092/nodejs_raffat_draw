@@ -4,7 +4,7 @@ const ticketCollection = require('./tickets')
 
 exports.sellSingleTicket = (req, res) => {
     const { username, price } = req.body;
-    const ticket = ticketCollection.create(username, price)
+    const ticket = ticketCollection.create(username, price);
     res.status(201).json({
         message: 'Ticket create successfully',
         ticket,
@@ -23,6 +23,7 @@ exports.sellBulkTicket = (req, res) => {
 
 exports.findAll = (req, res) => {
     const tickets = ticketCollection.find();
+    console.log(tickets);
     res.status(200).json({ items: tickets, total: tickets.length });
 
 };
